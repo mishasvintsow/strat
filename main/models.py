@@ -4,6 +4,9 @@ import const
 
 
 class Coin(models.Model):
+    class Meta:
+        ordering = ['coin']
+
     coin = models.CharField(max_length=10, unique=True)
     name = models.CharField(max_length=50)
 
@@ -31,10 +34,16 @@ class Symbol(models.Model):
 
 
 class SymbolInfo(models.Model):
+    class Meta:
+        ordering = ('-pnl_20',)
+
     symbol = models.OneToOneField(Symbol, on_delete=models.CASCADE)
-    pnl_10 = models.FloatField(default=0)
-    pnl_25 = models.FloatField(default=0)
-    pnl_50 = models.FloatField(default=0)
+    pnl_1_max = models.FloatField(default=0)
+    pnl_20 = models.FloatField(default=0)
+    body_mean = models.FloatField(default=0)
+
+    def __str__(self):
+        return '%12s | PnL: %5.2f' % (str(self.symbol), self.pnl_1_max)
 
 
 class Candle(models.Model):

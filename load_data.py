@@ -93,6 +93,10 @@ def fill_db_symbols(client):
 
 
 def update_symbol_klines(client, symbol, start_date, end_date):
+    try:
+        client.ping()
+    except binance.BinanceAPIException:
+        client = connect()
     symbol.last_update = timezone.now()
     symbol.save()
     data = get_candles(client, str(symbol), start_date, end_date, const.KLINE_INTERVAL_5MINUTE)
@@ -107,6 +111,7 @@ def update_symbol_klines(client, symbol, start_date, end_date):
                                                   'close': row['close'],
                                                   'volume': row['volume'],
                                                   })
+    return data
 
 
 def update_klines_day():
