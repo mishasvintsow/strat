@@ -3,8 +3,12 @@ import os
 import sys
 import time
 from datetime import timedelta
-
 import django
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'strat.settings')
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+django.setup()
+
 from django.utils import timezone
 
 from connect import connect
@@ -15,10 +19,6 @@ from process_data import update_pnl
 
 logger = logging.getLogger(__name__)
 
-sys.path.insert(0, '../')
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'strat.settings')
-os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
-django.setup()
 
 
 def test():
@@ -41,4 +41,7 @@ def test():
     return True
 
 if __name__ == '__main__':
+    file_path = "log.log"
+    with open(file_path, 'a') as file:
+        file.write("This will be added to the next line\n")
     test()
