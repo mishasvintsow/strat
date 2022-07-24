@@ -85,11 +85,11 @@ WSGI_APPLICATION = 'strat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'strat_db',
-        'USER': 'dbuser',
-        'PASSWORD': 'dbuserpass',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': config('DB_NAME', default='strat_db'),
+        'USER': config('DB_USER', default='dbuser'),
+        'PASSWORD': config('DB_PASSWORD', default='dbuserpass'),
+        'HOST': config('DB_HOST', default='127.0.0.1'),
+        'PORT': config('DB_PORT', default='5432'),
     }
 }
 
