@@ -20,7 +20,7 @@ from process_data import update_minute
 logger = logging.getLogger(__name__)
 
 
-def update_candles():
+def cron_minute():
     time_start = timezone.now()
     client = connect()
     logger.warning(client.ping())
@@ -41,4 +41,4 @@ def update_candles():
 
 
 if __name__ == '__main__':
-    update_candles()
+    cron_minute()

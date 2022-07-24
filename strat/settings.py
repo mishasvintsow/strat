@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
-    'main'
+    'main',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -173,7 +174,8 @@ LOGGERS = {
 }
 
 CRONJOBS = [
-    ('*/1 * * * *', 'cron.test', '>> '+str(BASE_DIR/'scheduled_jobs.log')),
+    ('*/1 * * * *', 'cron.cron_minute.cron_minute', '>> '+str(BASE_DIR/'scheduled_jobs.log')),
+    ('*/5 * * * *', 'cron.cron_5minutes.cron_5minutes', '>> '+str(BASE_DIR/'scheduled_jobs.log')),
 ]
 
 CRONTAB_DJANGO_PROJECT_NAME = 'strat'

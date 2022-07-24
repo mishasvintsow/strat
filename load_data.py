@@ -121,7 +121,8 @@ def update_klines_day():
             client.ping()
         except binance.BinanceAPIException:
             client = connect()
-        update_symbol_klines(client, symbol, timezone.now() - timedelta(minutes=1440), timezone.now())
+        update_symbol_klines(client, symbol, timezone.now() - timedelta(minutes=1450), timezone.now())
+    return True
 
 
 def update_klines_missed():

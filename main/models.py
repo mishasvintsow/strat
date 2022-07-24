@@ -35,12 +35,16 @@ class Symbol(models.Model):
 
 class SymbolInfo(models.Model):
     class Meta:
-        ordering = ('-pnl_20',)
+        ordering = ('-pnl_20_1h',)
 
     symbol = models.OneToOneField(Symbol, on_delete=models.CASCADE)
     pnl_1_max = models.FloatField(default=0)
-    pnl_20 = models.FloatField(default=0)
-    body_mean = models.FloatField(default=0)
+    pnl_20_1h = models.FloatField(default=0)
+    pnl_20_12h = models.FloatField(default=0)
+    body_mean_1h = models.FloatField(default=0)
+    body_mean_12h = models.FloatField(default=0)
+    variability = models.FloatField(default=0)
+    min_diff_price = models.FloatField(default=0)
 
     def __str__(self):
         return '%12s | PnL: %5.2f' % (str(self.symbol), self.pnl_1_max)
